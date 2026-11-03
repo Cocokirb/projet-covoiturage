@@ -1,5 +1,7 @@
 <?php
 
 return [
-    'bienvenue' => ['GET'],
+    'bienvenue'   => ['GET'],
+    'inscription' => ['GET'],
+
 ];
