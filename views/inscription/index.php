@@ -2,7 +2,7 @@
     <h1 id="titre-inscription">Crée votre compte</h1>
 
 
-    <form method="POST" action="index.php?action=inscription" class="card-form">
+    <form method="POST" action="index.php?action=create" class="card-form">
         <div class="form-group">
             <label for="prenom">Prénom </label>
             <input type="text" id="prenom" name="prenom" value="<?php echo htmlspecialchars($prenom) ?>"
