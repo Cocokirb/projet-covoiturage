@@ -5,28 +5,28 @@
     <form method="POST" action="index.php?action=create" class="card-form">
         <div class="form-group">
             <label for="prenom">Prénom </label>
-            <input type="text" id="prenom" name="prenom" value="<?php echo htmlspecialchars($prenom) ?>"
+            <input type="text" id="prenom" name="prenom" value="<?php echo htmlspecialchars($prenom ?? '') ?>"
                 placeholder="Claude" novalidate>
             <p class="form-error"><?php echo $error['prenom'] ?? '' ?></p>
         </div>
 
         <div class="form-group">
             <label for="nom">Nom</label>
-            <input type="text" id="nom" name="nom" value="<?php echo htmlspecialchars($nom) ?>" placeholder="Dupont"
+            <input type="text" id="nom" name="nom" value="<?php echo htmlspecialchars($nom ?? '') ?>" placeholder="Dupont"
                 novalidate>
             <p class="form-error"><?php echo $error['nom'] ?? '' ?></p>
         </div>
 
         <div class="form-group">
             <label for="email">Adresse e-mail</label>
-            <input type="text" id="email" name="email" value="<?php echo htmlspecialchars($email) ?>"
+            <input type="text" id="email" name="email" value="<?php echo htmlspecialchars($email ?? '') ?>"
                 placeholder="claude.dupont@example.com" novalidate>
             <p class="form-error"><?php echo $error['email'] ?? '' ?></p>
         </div>
 
         <div class="form-group">
             <label for="noTel">Numéro de téléphone</label>
-            <input type="tel" id="noTel" name="noTel" value="<?php echo htmlspecialchars($noTel) ?>"
+            <input type="tel" id="noTel" name="noTel" value="<?php echo htmlspecialchars($noTel ?? '') ?>"
                 placeholder="01 23 45 67 89" novalidate>
             <p class="form-error"><?php echo $error['noTel'] ?? '' ?></p>
         </div>

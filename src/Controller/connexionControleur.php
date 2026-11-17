@@ -8,6 +8,8 @@ function afficherSeConnecter(PDO $connexion): void
     afficherVue('connexion/index', [
         'titre' => 'Se Connecter',
         'pageCourante' => 'SeConnecter',
+        'error' => [],
+        'email' => '',
     ]);
 }
 
@@ -28,6 +30,16 @@ function traiterConnexion(PDO $connexion): void
 
         if (empty($error)) {
             if (verifierConnexion($connexion, $email, $motdepasse)) {
+                $enseignant = recupererEnseignantParEmail($connexion, $email);
+
+                if ($enseignant !== null) {
+                    $_SESSION['utilisateur'] = [
+                        'prenom' => $enseignant['prenomEnseignant'],
+                        'nom' => $enseignant['nomEnseignant'],
+                        'email' => $email,
+                    ];
+                }
+
                 header('Location: index.php?action=bienvenue');
                 exit();
             } else {

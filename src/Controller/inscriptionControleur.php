@@ -8,6 +8,11 @@ function afficherInscription(PDO $connexion): void
     afficherVue('inscription/index', [
         'titre'        => 'Inscription',
         'pageCourante' => 'inscription',
+        'error'        => [],
+        'nom'          => '',
+        'prenom'       => '',
+        'email'        => '',
+        'noTel'        => '',
     ]);
 }
 
