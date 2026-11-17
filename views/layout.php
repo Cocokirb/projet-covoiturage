@@ -32,10 +32,17 @@
         <nav class="nav-bar" aria-label="Navigation principale">
             <a href="index.php?action=bienvenue"
                 <?= $pageCourante === 'bienvenue' ? ' class="active" aria-current="page"' : '' ?>>Bienvenue</a>
-            <a href="index.php?action=inscription"
-                <?= $pageCourante === 'inscription' ? ' class="active" aria-current="page"' : '' ?>>Inscription</a>
-            <a href="index.php?action=seConnecter"
-                <?= $pageCourante === 'seConnecter' ? ' class="active" aria-current="page"' : '' ?>>Connexion</a>
+
+            <?php if (($utilisateur ?? null) === null): ?>
+                <a href="index.php?action=inscription"
+                    <?= $pageCourante === 'inscription' ? ' class="active" aria-current="page"' : '' ?>>Inscription</a>
+                <a href="index.php?action=seConnecter"
+                    <?= $pageCourante === 'seConnecter' ? ' class="active" aria-current="page"' : '' ?>>Connexion</a>
+            <?php else: ?>
+                <form method="POST" action="index.php?action=deconnexion" class="logout-form">
+                    <button type="submit" class="btn btn-outline">Déconnexion</button>
+                </form>
+            <?php endif; ?>
         </nav>
     </header>
 

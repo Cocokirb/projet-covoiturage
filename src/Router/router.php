@@ -53,7 +53,8 @@ function routerRequete(PDO $connexion): void
         'bienvenue'   => afficherBienvenue($connexion),
         'inscription' => afficherInscription($connexion),
         'create'      => traiterInscription($connexion),
-        'seConnecter'    => afficherSeConnecter($connexion),
-        'connexion' => traiterConnexion($connexion),
+        'seConnecter' => afficherSeConnecter($connexion),
+        'connexion'   => traiterConnexion($connexion),
+        'deconnexion' => deconnecterUtilisateur(),
     };
 }

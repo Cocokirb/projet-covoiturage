@@ -41,7 +41,8 @@ function traiterInscription(PDO $connexion): void
             $error['email'] = "L'adresse mail est déjà utilisé";
         }
 
-        if (trim($noTel) === '' || strlen(trim($noTel)) !== 10) {
+        $noTelValide = preg_match('/^(0|\+33)[1-9](\d{8})$/', $noTel) === 1 || preg_match('/^\d{10}$/', $noTel) === 1;
+        if ($noTel === '' || $noTelValide === false) {
             $error['noTel'] = 'Veuillez entrer un numéro de téléphone valide (10 chiffres).';
         }
 
@@ -56,8 +57,18 @@ function traiterInscription(PDO $connexion): void
 
         if (empty($error)) {
             insererCompte($connexion, $prenom, $nom, $email, $noTel, $motdepasse);
-            header('Location: index.php?action=bienvenue');
-            exit();
+
+            afficherVue('inscription/index', [
+                'titre'        => 'Inscription',
+                'pageCourante' => 'inscription',
+                'error'        => [],
+                'nom'          => '',
+                'prenom'       => '',
+                'email'        => '',
+                'noTel'        => '',
+                'success'      => 'Votre compte a bien été créé. Vous pouvez maintenant vous connecter.',
+            ]);
+            return;
         }
 
         afficherVue('inscription/index', [

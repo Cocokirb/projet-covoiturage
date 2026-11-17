@@ -7,7 +7,7 @@ function afficherSeConnecter(PDO $connexion): void
 {
     afficherVue('connexion/index', [
         'titre' => 'Se Connecter',
-        'pageCourante' => 'SeConnecter',
+        'pageCourante' => 'seConnecter',
         'error' => [],
         'email' => '',
     ]);
@@ -50,8 +50,16 @@ function traiterConnexion(PDO $connexion): void
 
     afficherVue('connexion/index', [
         'titre' => 'Connexion',
-        'pageCourante' => 'connexion',
+        'pageCourante' => 'seConnecter',
         'error' => $error,
         'email' => $email,
     ]);
+}
+
+function deconnecterUtilisateur(): void
+{
+    unset($_SESSION['utilisateur']);
+    session_destroy();
+    header('Location: index.php?action=bienvenue');
+    exit();
 }

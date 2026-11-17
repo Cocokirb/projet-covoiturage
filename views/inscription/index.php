@@ -1,6 +1,14 @@
 <section aria-labelledby="titre-inscription">
     <h1 id="titre-inscription">Crée votre compte</h1>
 
+    <?php if (!empty($success ?? '')): ?>
+        <div class="alert alert-success">
+            <p><?= htmlspecialchars($success, ENT_QUOTES, 'UTF-8') ?></p>
+            <div class="form-actions" style="justify-content: flex-start; margin-top: 1rem;">
+                <a href="index.php?action=seConnecter" class="btn btn-primary">Se connecter</a>
+            </div>
+        </div>
+    <?php endif; ?>
 
     <form method="POST" action="index.php?action=create" class="card-form">
         <div class="form-group">
