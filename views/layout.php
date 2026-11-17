@@ -22,6 +22,8 @@
                 <?= $pageCourante === 'bienvenue' ? ' class="active" aria-current="page"' : '' ?>>Bienvenue</a>
             <a href="index.php?action=inscription"
                 <?= $pageCourante === 'inscription' ? ' class="active" aria-current="page"' : '' ?>>Inscription</a>
+            <a href="index.php?action=seConnecter"
+                <?= $pageCourante === 'seConnecter' ? ' class="active" aria-current="page"' : '' ?>>Connexion</a>
         </nav>
     </header>
 
