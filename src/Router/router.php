@@ -8,9 +8,9 @@ function afficherErreur404(string $action = ''): void
 {
     http_response_code(404);
     afficherVue('errors/404', [
-        'titre' => '404 — Page introuvable',
+        'titre'        => '404 — Page introuvable',
         'pageCourante' => '',
-        'action' => $action,
+        'action'       => $action,
     ]);
 }
 
@@ -23,33 +23,34 @@ function afficherErreur405(array $methodesAutorisees = [], string $methode = '')
     }
 
     afficherVue('errors/405', [
-        'titre' => '405 — Méthode non autorisée',
-        'pageCourante' => '',
+        'titre'              => '405 — Méthode non autorisée',
+        'pageCourante'       => '',
         'methodesAutorisees' => $methodesAutorisees,
-        'methode' => $methode,
+        'methode'            => $methode,
     ]);
 }
 
 function routerRequete(PDO $connexion): void
 {
     // Le fichier retourne un tableau : le relire à chaque appel du routeur.
-    $routes = require __DIR__ . '/../../config/routes.php';
-    $action = $_GET['action'] ?? 'bienvenue';
+    $routes  = require __DIR__ . '/../../config/routes.php';
+    $action  = $_GET['action'] ?? 'bienvenue';
     $methode = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 
     // Une action peut aussi être envoyée sous forme de tableau dans l'URL.
-    if (!is_string($action) || !array_key_exists($action, $routes)) {
+    if (! is_string($action) || ! array_key_exists($action, $routes)) {
         afficherErreur404(is_string($action) ? $action : '');
         return;
     }
 
-    if (!in_array($methode, $routes[$action], true)) {
+    if (! in_array($methode, $routes[$action], true)) {
         afficherErreur405($routes[$action], $methode);
         return;
     }
 
     match ($action) {
-        'bienvenue' => afficherBienvenue($connexion),
+        'bienvenue'   => afficherBienvenue($connexion),
         'inscription' => afficherInscription($connexion),
+        'create'      => traiterInscription($connexion),
     };
 }
